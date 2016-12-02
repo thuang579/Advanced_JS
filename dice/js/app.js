@@ -29,6 +29,7 @@ function rollDice(){
   document.getElementById("second-die").className = secondDie;
 }
 
+//if button clicked, run rollDice function
 document.getElementById('roll-dice').onclick = function() {
   rollDice();
  }
