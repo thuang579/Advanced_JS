@@ -50,5 +50,13 @@ module.exports = function(robot){
 
   //Random
 
+  robot.hear(/how many deep breaths/i, function(msg){
+
+    var randomnum = Math.ceil(Math.random() * 8)
+    msg.send(""+randomnum+"!")
+
+  })
+
+
   //Image
 }
