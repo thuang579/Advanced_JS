@@ -96,6 +96,8 @@ var nytUrl = 'https://newsapi.org/v1/articles?source=the-new-york-times&sortBy=t
 function loadFeed(feedUrl){
   $.get(feedUrl, function(r){
 
+  feedItems = r.items
+
   console.log("loadFeed called")
 
 
@@ -137,10 +139,9 @@ $('#main article').click(function(e){
 
 //
 $('.dropdown-feed').on('click',function(e){
+  $('#main').empty()
   loadFeed($(e.currentTarget).data('feed-url'))
   console.log("dropdown-feed clicked")
-  $('#main').empty()
-  loadFeed()
 })
 
 
