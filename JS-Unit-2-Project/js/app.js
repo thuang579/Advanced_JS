@@ -136,7 +136,11 @@ $('#main article').click(function(e){
   var html = popUpTemplate(popupContent)
   $('#popUp').html(html)
 
-
+  //close popUp
+  $('.closePopUp').click(function(){
+    $('#popUp').addClass('hidden');
+    console.log("x clicked")
+  })
 })
   //$("#main").append('</section>')
 
