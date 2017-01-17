@@ -96,6 +96,39 @@ var nytUrl = 'https://newsapi.org/v1/articles?source=the-new-york-times&sortBy=t
 function loadFeed(feedUrl){
   $.get(feedUrl, function(r){
 
+  console.log("loadFeed called")
+
+
+  //handlebars repopulating
+  for (var i = 0; i < 10; i++) {
+
+        var itemContent = {i: i, imageurl: feedItems[i].thumbnail, title: feedItems[i].title}
+        var html = articleItemTemplate(itemContent)
+
+        $("#main").append(html)
+
+  }
+
+
+$('#main article').click(function(e){
+  console.log("test")
+
+  //open popUp
+  $('#popUp').removeClass('hidden');
+  var i = $(e.currentTarget).data('i')
+  var popupContent = {title: feedItems[i].title, description: feedItems[i].description, link: feedItems[i].link}
+
+  var html = popUpTemplate(popupContent)
+  $('#popUp').html(html)
+
+  //close popUp
+  $('.closePopUp').click(function(){
+    $('#popUp').addClass('hidden');
+    console.log("x clicked")
+  })
+})
+
+
 
   })
 }
