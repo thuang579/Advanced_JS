@@ -3,6 +3,14 @@
   Please add all Javascript code to this file.
 */
 
+ //Compile element using handlebars
+  var source = $('#articleItemTemplate').html();
+  var articleItemTemplate = Handlebars.compile(source);
+
+  var popupsource = $('#popUpTemplate').html();
+  var popUpTemplate = Handlebars.compile(popupsource);
+
+
 
 $(document).ready(function(){
 
@@ -32,6 +40,7 @@ $(document).ready(function(){
 //global varabile to have value set in and accessed outside get api request?
 var jsonresponse;
 
+var feedItems;
 
 //ajax code maybe for adding loader?
 // $.ajax({
@@ -75,47 +84,81 @@ var jsonresponse;
     //  console.log(r.articles[3].title);
 
 
+
+
+    //Brietbart feed
+    $. get( 'https://api.rss2json.com/v1/api.json?rss_url=http%3A%2F%2Ffeeds.feedburner.com%2Fbreitbart', function( br ) {
+    })
+
+
+
 $.get("https://api.rss2json.com/v1/api.json?rss_url=http%3A%2F%2Ffeeds.foxnews.com%2Ffoxnews%2Fpolitics", function(r){
   console.log(r);
 
+feedItems = r.items;
+
+  // document.getElementById("breitbart").onclick = function() {
+  //     r = br;
+  // }
+
+
+jsonresponse = r;
+
+  //$("#main").append('<section id="main" class="container">')
 
   for (var i = 0; i < 10; i++) {
 
-    //getting img url and compiling img string
-    var $imgurl = r.items[i].thumbnail
-    var $img = '<img src="' + $imgurl + '">'
+        //getting img url and compiling img string
+        // var $imgurl = feedItems[i].thumbnail
+        // var $img = '<img class="featuredImage" src="' + $imgurl + '">'
+        //
+        // //getting title and compiling title link
+        // var $title = feedItems[i].title
+        // var $titleLink = '<a href="#"><h3>' + $title + '</h3></a>'
 
-    //getting title and compiling title link
-    var $title = r.items[i].title
-    var $titleLink = '<a href="#"><h3>' + $title + '</h3></a>'
+        //appending img and title to DOM - needs styling
+        //$("#main").append('<article class="article">' + $img + $titleLink + '</article>')
 
-    //appending img and title to DOM - needs styling
-    $("#main").append('<article>' + $img + $titleLink + '</article>')
+        var itemContent = {i: i, imageurl: feedItems[i].thumbnail, title: feedItems[i].title}
+        var html = articleItemTemplate(itemContent)
 
-    //test appending as list
-    //$("#main").append("<li>"+r.items.title+"</li>")
-
+        $("#main").append(html)
+        //test appending as list
+        //$("#main").append("<li>"+r.items.title+"</li>")
   }
 
+$('#main article').click(function(e){
+  console.log("test")
+  $('#popUp').removeClass('hidden');
+  var i = $(e.currentTarget).data('i')
+  var popupContent = {title: feedItems[i].title}
 
-//FOR MODAL
+  var html = popUpTemplate(popupContent)
+  $('#popUp').html(html)
 
-  //sets modal title
-  document.getElementById('article1-title').innerHTML = r.items[0].title;
-  //document.getElementById('article2-title').innerHTML = r.items[1].title;
 
-  //sets modal desciption
-  document.getElementById('article1-description').innerHTML = r.items[0].description;
-  //document.getElementById('article2-description').innerHTML = r.items[1].description;
+})
+  //$("#main").append('</section>')
 
-  //sets modal link
-  $("#article1-a").attr("href",r.items[0].link);
-  //$("#article2-a").attr("href",r.items[1].link);
+
+  //for populating HTML - to delete
+// for (var i = 0; i < 4; i++) {
+//     //set feed article title
+//     document.getElementById('article' + i).innerHTML = r.items[i].title;
+//     //set feed article image
+//     $("#article"+i+"-img").attr("src",r.items[i].thumbnail);
+//   }
+
+
+
+
+
 
 })
 
+console.log(jsonresponse);
 
-//jsonresponse = r;
+
 
 
      //  for NY Times Feed - need
@@ -141,35 +184,7 @@ $.get("https://api.rss2json.com/v1/api.json?rss_url=http%3A%2F%2Ffeeds.foxnews.c
 
 //from w3schools FOR modal
 
-// Get the modal
-var modal = document.getElementById('myModal');
 
-// Get the button that opens the modal
-//var btn = document.getElementById("myBtn");
-var openModal = document.getElementById("article1");
-//var openModal = document.getElementById("article1");
-
-
-
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-
-// When the user clicks on the button, open the modal
-openModal.onclick = function() {
-    modal.style.display = "block";
-}
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-    modal.style.display = "none";
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-}
 
 
 
@@ -229,15 +244,7 @@ window.onclick = function(event) {
 
 //for handlebars tests
 
-//      var articleTitles = {};
-//
-//  Compile element using handlebars
-//  articleTitles.compileItem = function(item) {
-//   var source = $('#to-do-template').html();
-//   var template = Handlebars.compile(source);
-//   return template(item);
-// }
-//}
+
 
  //});
 

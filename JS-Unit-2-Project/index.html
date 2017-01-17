@@ -44,28 +44,12 @@
 
 
 
-<!--from w3schools-->
-<!-- The Modal -->
-<div id="myModal" class="modal">
-
-  <!-- Modal content -->
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <h1 id="article1-title">Article title here</h1>
-    <p id="article1-description">
-      Article description/content here.
-    </p>
-    <a href="#" id="article1-a" target="_blank">Read more from source</a>
-  </div>
-
-</div>
-
 
 
 <!--from starter code for popUp-->
-        <div id="popUp" class="loader hidden">
+        <div id="popUp" class="hidden">
 
-          <a href="#" class="closePopUp">X</a>
+          <!-- <a href="#" class="closePopUp">X</a>
 
           <div class="container">
             <h1>Article title here</h1>
@@ -73,14 +57,15 @@
               Article description/content here.
             </p>
             <a href="#" class="popUpAction" target="_blank">Read more from source</a>
-          </div>
+          </div> -->
         </div>
 
 
 
 <!--from starter code for main feed-->
-        <section id="main" class="container">
 
+        <section id="main" class="container">
+<!--
           <article class="article">
             <section class="featuredImage">
               <img id="article0-img" src="images/article_placeholder_1.jpg" alt="" />
@@ -141,9 +126,37 @@
             </section>
             <div class="clearfix"></div>
           </article>
+-->
 
-        </section>
+</section>
 
+
+        <script id="articleItemTemplate" type="text/x-handlebars-template">
+                <article class="article" data-i="{{i}}">
+                  <section class="featuredImage">
+                    <img src="{{imageurl}}" alt="" />
+                  </section>
+                  <section class="articleContent">
+                      <a href="#"><h3>{{title}}</h3></a>
+                  </section>
+
+                  <div class="clearfix"></div>
+                </article>
+        </script>
+
+
+        <script id="popUpTemplate" type="text/x-handlebars-template">
+
+          <a href="#" class="closePopUp">X</a>
+
+          <div class="container">
+            <h1>{{title}}</h1>
+            <p>
+              {{description}}
+            </p>
+            <a href="{{link}}" class="popUpAction" target="_blank">Read more from source</a>
+          </div>
+        </script>
 
 
 <!--scripts-->
@@ -153,6 +166,8 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.3.min.js"><\/script>')</script>
         <script src="js/app.js"></script>
+
+
 
     </body>
 </html>
