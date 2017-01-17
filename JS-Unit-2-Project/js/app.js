@@ -97,15 +97,6 @@ $.get("https://api.rss2json.com/v1/api.json?rss_url=http%3A%2F%2Ffeeds.foxnews.c
 
   }
 
-  //for populating HTML - to delete
-for (var i = 0; i < 4; i++) {
-    //set feed article title
-    document.getElementById('article' + i).innerHTML = r.items[i].title;
-    //set feed article image
-    $("#article"+i+"-img").attr("src",r.items[i].thumbnail);
-
-  }
-
 
 //FOR MODAL
 
@@ -120,10 +111,6 @@ for (var i = 0; i < 4; i++) {
   //sets modal link
   $("#article1-a").attr("href",r.items[0].link);
   //$("#article2-a").attr("href",r.items[1].link);
-
-
-
-
 
 })
 
@@ -159,7 +146,7 @@ var modal = document.getElementById('myModal');
 
 // Get the button that opens the modal
 //var btn = document.getElementById("myBtn");
-var openModal = document.getElementById("article0");
+var openModal = document.getElementById("article1");
 //var openModal = document.getElementById("article1");
 
 
