@@ -88,8 +88,27 @@ var nytUrl = 'https://newsapi.org/v1/articles?source=the-new-york-times&sortBy=t
 
     //Breitbart feed
     $.get(breitbartUrl, function( br ) {
+      console.log(br);
     })
 
+
+//
+function loadFeed(feedUrl){
+  $.get(feedUrl, function(r){
+
+
+  })
+}
+
+
+
+//
+$('.dropdown-feed').on('click',function(e){
+  loadFeed($(e.currentTarget).data('feed-url'))
+  console.log("dropdown-feed clicked")
+  $('#main').empty()
+  loadFeed()
+})
 
 
 $.get(foxUrl, function(r){
