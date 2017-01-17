@@ -131,7 +131,7 @@ $('#main article').click(function(e){
   console.log("test")
   $('#popUp').removeClass('hidden');
   var i = $(e.currentTarget).data('i')
-  var popupContent = {title: feedItems[i].title, description: feedItems[i].description}
+  var popupContent = {title: feedItems[i].title, description: feedItems[i].description, link: feedItems[i].link}
 
   var html = popUpTemplate(popupContent)
   $('#popUp').html(html)
