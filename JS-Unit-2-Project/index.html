@@ -49,15 +49,6 @@
 <!--from starter code for popUp-->
         <div id="popUp" class="hidden">
 
-          <!-- <a href="#" class="closePopUp">X</a>
-
-          <div class="container">
-            <h1>Article title here</h1>
-            <p>
-              Article description/content here.
-            </p>
-            <a href="#" class="popUpAction" target="_blank">Read more from source</a>
-          </div> -->
         </div>
 
 
@@ -65,71 +56,11 @@
 <!--from starter code for main feed-->
 
         <section id="main" class="container">
-<!--
-          <article class="article">
-            <section class="featuredImage">
-              <img id="article0-img" src="images/article_placeholder_1.jpg" alt="" />
-            </section>
-            <section class="articleContent">
-                <a id="article0-a" href="#" ><h3 id="article0">
-                  test test
-                </h3></a>
-                <h6>Lifestyle</h6>
-            </section>
-            <section class="impressions">
-              526
-            </section>
-            <div class="clearfix"></div>
-          </article>
+
+        </section>
 
 
-          <article class="article">
-            <section class="featuredImage">
-              <img id="article2-img" src="images/article_placeholder_2.jpg" alt="" />
-            </section>
-            <section class="articleContent">
-                <a id="article1-a" href="#"><h3 id="article1">Test article title</h3></a>
-                <h6>Lifestyle</h6>
-            </section>
-            <section class="impressions">
-              526
-            </section>
-            <div class="clearfix"></div>
-          </article>
-
-
-          <article class="article">
-            <section class="featuredImage">
-              <img id="article2-img" src="images/article_placeholder_2.jpg" alt="" />
-            </section>
-            <section class="articleContent">
-                <a href="#"><h3 id="article2">Test article title</h3></a>
-                <h6>Lifestyle</h6>
-            </section>
-            <section class="impressions">
-              526
-            </section>
-            <div class="clearfix"></div>
-          </article>
-
-
-          <article class="article">
-            <section class="featuredImage">
-              <img id="article3-img" src="images/article_placeholder_1.jpg" alt="" />
-            </section>
-            <section class="articleContent">
-                <a href="#"><h3 id="article3">Test article title</h3></a>
-                <h6>Lifestyle</h6>
-            </section>
-            <section class="impressions">
-              526
-            </section>
-            <div class="clearfix"></div>
-          </article>
--->
-
-</section>
-
+<!--Handlebars-->
 
         <script id="articleItemTemplate" type="text/x-handlebars-template">
                 <article class="article" data-i="{{i}}">
@@ -152,11 +83,12 @@
           <div class="container">
             <h1>{{title}}</h1>
             <p>
-              {{description}}
+              {{{description}}}
             </p>
             <a href="{{link}}" class="popUpAction" target="_blank">Read more from source</a>
           </div>
         </script>
+
 
 
 <!--scripts-->
