@@ -15,27 +15,6 @@
 $(document).ready(function(){
 
 
-    //tested - not working
-    // $(document).ajaxStart(function(){
-    //     $("#popUp").css("display", "block");
-    // });
-    // $(document).ajaxComplete(function(){
-    //     $("#popUp").css("display", "none");
-    // });
-
-
-// test to add loader? - not working
-// $(document).ajaxStart(function(){
-//     //$("#popUp").css("display", "block");
-//     $("popUp.loader").show();
-// });
-//
-// $(document).ajaxComplete(function(){
-//     //$("#popUp").css("display", "none");
-//     $("popUp.loader").hide();
-// });
-
-
 //global variable to have value set in and accessed outside get api request?
 var jsonresponse;
 
@@ -45,7 +24,7 @@ var breitbartUrl = 'https://api.rss2json.com/v1/api.json?rss_url=http%3A%2F%2Ffe
 var foxUrl = 'https://api.rss2json.com/v1/api.json?rss_url=http%3A%2F%2Ffeeds.foxnews.com%2Ffoxnews%2Fpolitics';
 var nytUrl = 'https://newsapi.org/v1/articles?source=the-new-york-times&sortBy=top&apiKey=08d58f2f94b0426e856bb17cb5a7657b'
 
-//ajax code maybe for adding loader?
+//ajax code maybe for adding error?
 // $.ajax({
 //     url: "https://api.rss2json.com/v1/api.json?rss_url=http%3A%2F%2Ffeeds.feedburner.com%2Fbreitbart",
 //
@@ -86,14 +65,13 @@ var nytUrl = 'https://newsapi.org/v1/articles?source=the-new-york-times&sortBy=t
     //  console.log(r.articles[3].title);
 
 
-    //Breitbart feed
-    $.get(breitbartUrl, function( br ) {
-      console.log(br);
-    })
-
 
 //
 function loadFeed(feedUrl){
+  //add loader when getting data
+  $('#popUp').removeClass('hidden');
+
+
   $.get(feedUrl, function(r){
 
   feedItems = r.items
@@ -108,27 +86,37 @@ function loadFeed(feedUrl){
         var html = articleItemTemplate(itemContent)
 
         $("#main").append(html)
-
   }
 
 
-$('#main article').click(function(e){
-  console.log("test")
+  //remove loader when get data
+  $('#popUp').addClass('hidden');
 
-  //open popUp
-  $('#popUp').removeClass('hidden');
-  var i = $(e.currentTarget).data('i')
-  var popupContent = {title: feedItems[i].title, description: feedItems[i].description, link: feedItems[i].link}
 
-  var html = popUpTemplate(popupContent)
-  $('#popUp').html(html)
+  //open popUp on click
+    $('#main article').click(function(e){
+      console.log("test")
 
-  //close popUp
-  $('.closePopUp').click(function(){
-    $('#popUp').addClass('hidden');
-    console.log("x clicked")
-  })
-})
+      //open popUp
+      $('#popUp').removeClass('hidden');
+
+      //set popUp contents
+      var i = $(e.currentTarget).data('i')
+      var popupContent = {title: feedItems[i].title, description: feedItems[i].description, link: feedItems[i].link}
+
+      //remove loader when get data
+      $('#popUp').removeClass('loader');
+
+      //populate template
+      var html = popUpTemplate(popupContent)
+      $('#popUp').html(html)
+
+      //close popUp
+      $('.closePopUp').click(function(){
+        $('#popUp').addClass('hidden');
+        console.log("x clicked")
+      })
+    })
 
 
 
@@ -137,7 +125,7 @@ $('#main article').click(function(e){
 
 
 
-//
+//to call loadFeed with selected source
 $('.dropdown-feed').on('click',function(e){
   $('#main').empty()
   loadFeed($(e.currentTarget).data('feed-url'))
@@ -145,15 +133,21 @@ $('.dropdown-feed').on('click',function(e){
 })
 
 
+
+//to call loadFeed with Fox from logo select
+$('#logo').on('click',function(e){
+  $('#main').empty()
+  loadFeed($('#fox').data('feed-url'))
+  console.log("logo clicked")
+})
+
+
+
+//initial call to loadFeed with Fox for now
 $.get(foxUrl, function(r){
   console.log(r);
 
   feedItems = r.items;
-
-    // document.getElementById("breitbart").onclick = function() {
-    //     r = br;
-    // }
-
 
   jsonresponse = r;
 
@@ -164,18 +158,28 @@ $.get(foxUrl, function(r){
           var html = articleItemTemplate(itemContent)
 
           $("#main").append(html)
-
     }
 
 
+  //remove loader when get data
+  $('#popUp').addClass('hidden');
+
+
+  //open popUp on click
   $('#main article').click(function(e){
     console.log("test")
 
     //open popUp
     $('#popUp').removeClass('hidden');
+
+    //set popUp contents
     var i = $(e.currentTarget).data('i')
     var popupContent = {title: feedItems[i].title, description: feedItems[i].description, link: feedItems[i].link}
 
+    //remove loader when get data
+    $('#popUp').removeClass('loader');
+
+    //populate template
     var html = popUpTemplate(popupContent)
     $('#popUp').html(html)
 
