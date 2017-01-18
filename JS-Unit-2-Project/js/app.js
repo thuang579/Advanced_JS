@@ -40,9 +40,6 @@ var nytUrl = 'https://newsapi.org/v1/articles?source=the-new-york-times&sortBy=t
 
 
 
-      document.getElementById("breitbart").onclick = function() {
-          console.log("breitbart clicked")
-      }
 
 
 //Brietbart feed
@@ -65,8 +62,15 @@ var nytUrl = 'https://newsapi.org/v1/articles?source=the-new-york-times&sortBy=t
     //  console.log(r.articles[3].title);
 
 
+//expand search on click
+$('#search').click(function(){
+    console.log("search clicked")
+    $('#search').toggleClass('active');
 
-//
+})
+
+
+//load with new feed
 function loadFeed(feedUrl){
   //add loader when getting data
   $('#popUp').removeClass('hidden');

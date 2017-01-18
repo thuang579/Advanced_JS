@@ -135,7 +135,8 @@ header #search input {
 }
 
 header #search.active input {
-  width: 160px;
+  width: 210px;
+  /*was 160px*/
   padding: 8px 10px;
   visibility: visible;
 }
