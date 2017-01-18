@@ -24,42 +24,29 @@ var breitbartUrl = 'https://api.rss2json.com/v1/api.json?rss_url=http%3A%2F%2Ffe
 var foxUrl = 'https://api.rss2json.com/v1/api.json?rss_url=http%3A%2F%2Ffeeds.foxnews.com%2Ffoxnews%2Fpolitics';
 var nytUrl = 'https://newsapi.org/v1/articles?source=the-new-york-times&sortBy=top&apiKey=08d58f2f94b0426e856bb17cb5a7657b'
 
-//ajax code maybe for adding error?
-// $.ajax({
-//     url: "https://api.rss2json.com/v1/api.json?rss_url=http%3A%2F%2Ffeeds.feedburner.com%2Fbreitbart",
-//
-//     // Tell YQL what we want and that we want JSON
-//     data: {
-//         // q: "select title,abstract,url from search.news where query=\"cat\"",
-//         format: "json"
-//     },
-//
-//     // Work with the response
-//     success: function( r ) {
-//         console.log( r ); // server response
 
 
+//ajax code for if error
+$.ajax({
+    url: "https://api.rss2json.com/v1/api.json?rss_url=http%3A%2F%2Ffeeds.foxnews.com%2Ffoxnews%2Fpolitics",
+
+    data: {
+        format: "json"
+    },
+
+    success: function() {
+        console.log("success");
+    },
+
+    error: function(){
+        alert("Problem loading feed!")
+    }
+})
 
 
-
-//Brietbart feed
-//$.get( 'https://api.rss2json.com/v1/api.json?rss_url=http%3A%2F%2Ffeeds.feedburner.com%2Fbreitbart', function( r ) {
-
-//Fox News feed
-//$.get( 'https://api.rss2json.com/v1/api.json?rss_url=http%3A%2F%2Ffeeds.foxnews.com%2Ffoxnews%2Fpolitics', function( r ) {
-
-//NY Times feed
-//$.get( 'https://newsapi.org/v1/articles?source=the-new-york-times&sortBy=top&apiKey=08d58f2f94b0426e856bb17cb5a7657b', function( r ) {
-
-     // We get the data back from the request in the parameter we pass in the function
-     //console.log(r)
-
-     //console.log(r.items[0].title);
     //  for NY Times Feed
     //  console.log(r.articles[0].title);
-    //  console.log(r.articles[1].title);
-    //  console.log(r.articles[2].title);
-    //  console.log(r.articles[3].title);
+
 
 
 //expand search on click
